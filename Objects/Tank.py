@@ -55,17 +55,12 @@ class Tank(pygame.sprite.Sprite):
                            self.y - self.radarRadius, 
                            self.radarRadius * 2,
                            self.radarRadius * 2)
-        # pygame.draw.rect(self.surface, GREEN, rect, 2)
-        pygame.draw.arc(self.surface, GREEN, rect, 
-                        self.radDir - np.pi/10 - 1.02*np.pi/2, 
-                        self.radDir - 1.02*np.pi/2,
-                        width = 2)
-        points = [*self.radLine, (self.x + self.radarRadius*np.sin(self.radDir - np.pi/16),
-                                         self.y + self.radarRadius*np.cos(self.radDir - np.pi/16)),
-                                        (self.x + self.radarRadius*np.sin(self.radDir - 2*np.pi/16),
-                                         self.y + self.radarRadius*np.cos(self.radDir - 2*np.pi/16))
-                                          ]
-        pygame.draw.polygon(self.surface, GREEN, points)
+                        
+        for i in range(80):
+            line = [(self.x, self.y), (self.x + self.radarRadius*np.sin(self.radDir + i * np.pi/512),
+                                       self.y + self.radarRadius*np.cos(self.radDir + i * np.pi/512))]
+            pygame.draw.line(self.surface, (0, 255 - 3.18*i, 0 ), *line)
+            
         pygame.draw.line(self.surface, GREEN, *self.radLine)
         for item in self.game.objects:
             if type(item) == Bullet and item.origin != self:
@@ -124,7 +119,7 @@ class Tank(pygame.sprite.Sprite):
             self.surface.blit(self.filt, (0, 0))
             pygame.draw.circle(self.surface, GREEN, (self.x, self.y), self.radarRadius, 1)
             
-            self.radDir -= np.pi/25
+            self.radDir -= RADAR_ROT_ANGLE
             self.radDir = self.radDir % (2 * np.pi)
             self.radLine = ((self.x, self.y), (self.x + self.radarRadius*np.sin(self.radDir),
                                           self.y + self.radarRadius*np.cos(self.radDir)))
@@ -155,9 +150,9 @@ class Tank(pygame.sprite.Sprite):
             mouseAngle = -1 * (angle + 180)
         else:
             mouseAngle = -1 * angle
-        speed = (mouseAngle - self.turDir) / 5
-        if np.fabs(speed) >= 30:
-            speed = -1 * speed / 10
+        speed = (mouseAngle - self.turDir) / TURRET_ROT_MOD
+        if np.fabs(speed) >= TURRET_ROT_MOD * 1.5:
+            speed = -1 * speed / (TURRET_ROT_MOD * .5)
         self.turDir += speed
         self.turDir = self.turDir % 360
         self.game.fuel -= np.fabs(speed) * .005
