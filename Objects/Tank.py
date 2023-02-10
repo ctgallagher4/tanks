@@ -208,6 +208,9 @@ class Tank(pygame.sprite.Sprite):
             self.yVel = 0
             self.rotating = False
 
+            self.x = self.x % WIDTH
+            self.y = self.y % HEIGHT
+
         else:
             self.rotateTurret()
 
