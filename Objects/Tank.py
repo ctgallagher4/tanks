@@ -3,6 +3,7 @@ import numpy as np
 from Utilities.Constants import *
 from Utilities import *
 from Objects.Bullet import Bullet
+import os
 
 class Tank(pygame.sprite.Sprite):
 
@@ -42,10 +43,13 @@ class Tank(pygame.sprite.Sprite):
             self.filt = pygame.surface.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
         
         self.bodyImage = pygame.image.load(bodyImage).convert_alpha()
-        self.scaleBodyImageSize = [i/WIDTH * 300 for i in self.bodyImage.get_size()]
+        modifier = 300
+        if os.name == 'nt':
+            modifier = 80
+        self.scaleBodyImageSize = [i/WIDTH * modifier for i in self.bodyImage.get_size()]
         self.bodyImage = pygame.transform.scale(self.bodyImage, self.scaleBodyImageSize)
         self.turretImage = pygame.image.load(turretImage).convert_alpha()
-        self.scaleTurretImageSize = [i/WIDTH * 300 for i in self.turretImage.get_size()]
+        self.scaleTurretImageSize = [i/WIDTH * modifier for i in self.turretImage.get_size()]
         self.turretImage = pygame.transform.scale(self.turretImage, self.scaleTurretImageSize)
         self.bodyRect = self.bodyImage.get_rect(center = (self.x, self.y))
         self.turretRect = self.turretImage.get_rect(center = (self.x, self.y))
