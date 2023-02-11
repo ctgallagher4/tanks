@@ -1,13 +1,12 @@
 import pygame
 import numpy as np
 from Utilities.Constants import *
+from Utilities import *
 from Objects.Bullet import Bullet
-from threading import Thread, Lock
-import time
 
 class Tank(pygame.sprite.Sprite):
 
-    def __init__(self, game, surface, bodyImage, turretImage, x, y, lightOn=False, target=None):\
+    def __init__(self, game, surface, bodyImage, turretImage, x, y, lightOn=False, target=None):
 
         pygame.sprite.Sprite.__init__(self)
 
@@ -33,7 +32,7 @@ class Tank(pygame.sprite.Sprite):
         self.tagTime = 0
 
         if lightOn:
-            self.lightImage = pygame.image.load("image4.png").convert_alpha()
+            self.lightImage = pygame.image.load("assets/image4.png").convert_alpha()
             sizeX = self.lightImage.get_size()[0]
             sizeY = self.lightImage.get_size()[1]
             self.scaleLightImageSize = [sizeX * .60, sizeY * 2.5]

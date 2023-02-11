@@ -1,4 +1,5 @@
 from Utilities.Constants import *
+from Utilities import *
 
 class Explosion(pygame.sprite.Sprite):
 
@@ -7,11 +8,11 @@ class Explosion(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.OOB = False
-        self.img1 = pygame.image.load("exp1.png").convert_alpha()
-        self.img2 = pygame.image.load("exp2.png").convert_alpha()
-        self.img3 = pygame.image.load("exp3.png").convert_alpha()
-        self.img4 = pygame.image.load("exp4.png").convert_alpha()
-        self.img5 = pygame.image.load("exp5.png").convert_alpha()
+        self.img1 = pygame.image.load("assets/exp1.png").convert_alpha()
+        self.img2 = pygame.image.load("assets/exp2.png").convert_alpha()
+        self.img3 = pygame.image.load("assets/exp3.png").convert_alpha()
+        self.img4 = pygame.image.load("assets/exp4.png").convert_alpha()
+        self.img5 = pygame.image.load("assets/exp5.png").convert_alpha()
         sizeX = self.img1.get_size()[0]
         sizeY = self.img2.get_size()[1]
         self.scaleImageSize = [sizeX * 1, sizeY * 1]

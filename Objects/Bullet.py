@@ -1,6 +1,7 @@
 import numpy as np
 import pygame
 from Utilities.Constants import *
+from Utilities import *
 
 class Bullet(pygame.sprite.Sprite):
 

@@ -1,6 +1,5 @@
-import pygame
-import pygame
 import numpy as np
+from Utilities.__init__ import *
 from Utilities.Constants import *
 from Objects.Tank import Tank
 from Objects.Bullet import Bullet
@@ -12,6 +11,7 @@ class Game():
     '''A class to handle the Game'''
 
     def __init__(self):
+
         self.surface = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption('shadowTanks')
         self.clock = pygame.time.Clock()
@@ -45,21 +45,20 @@ class Game():
         '''A method to setup the game sprites'''
         self.target = Target(self.surface)
         self.objects.append(self.target)
-        self.player = Tank(self, self.surface, "tank_body.png", "turret.png", WIDTH/2, 
-                           HEIGHT/2, lightOn = True)
-        self.adversary1 = Tank(self, self.surface, "tank_body_red.png", "turret_red.png",
-                              0, HEIGHT/2, target = self.player)
-        self.adversary2 = Tank(self, self.surface, "tank_body_red.png", "turret_red.png",
-                              WIDTH/2, 0, target=self.player)
-        self.adversary3 = Tank(self, self.surface, "tank_body_red.png", "turret_red.png",
-                              WIDTH, HEIGHT/2, target=self.player)
-        self.adversary4 = Tank(self, self.surface, "tank_body_red.png", "turret_red.png",
-                              WIDTH/2, HEIGHT, target=self.player)
+        self.player = Tank(self, self.surface, "assets/tank_body.png", 
+                        "assets/turret.png", WIDTH/2, HEIGHT/2, lightOn = True)
+        self.adversary1 = Tank(self, self.surface, "assets/tank_body_red.png",
+                        "assets/turret_red.png",0, HEIGHT/2, target = self.player)
+        self.adversary2 = Tank(self, self.surface, "assets/tank_body_red.png", 
+                        "assets/turret_red.png",WIDTH/2, 0, target=self.player)
+        self.adversary3 = Tank(self, self.surface, "assets/tank_body_red.png", 
+                        "assets/turret_red.png", WIDTH, HEIGHT/2, target=self.player)
+        self.adversary4 = Tank(self, self.surface, "assets/tank_body_red.png", 
+                        "assets/turret_red.png", WIDTH/2, HEIGHT, target=self.player)
         self.objects.append(self.adversary1)
         self.objects.append(self.adversary2)
         self.objects.append(self.adversary3)
         self.objects.append(self.adversary4)
-        #self.objects.append(self.player)
 
     def reset(self):
         '''A method to reset the game sprites'''

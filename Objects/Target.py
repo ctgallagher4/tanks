@@ -1,6 +1,7 @@
 import pygame
 import numpy as np
-from Utilities.Constants import WHITE, RED, WIDTH, HEIGHT, GREEN
+from Utilities.Constants import *
+from Utilities.__init__ import *
 
 class Target(pygame.sprite.Sprite):
 
