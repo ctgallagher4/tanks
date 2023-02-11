@@ -15,7 +15,7 @@ class Explosion(pygame.sprite.Sprite):
         self.img5 = pygame.image.load("assets/exp5.png").convert_alpha()
         sizeX = self.img1.get_size()[0]
         sizeY = self.img2.get_size()[1]
-        self.scaleImageSize = [sizeX * 1, sizeY * 1]
+        self.scaleImageSize = [WIDTH * .035, HEIGHT * .053]
         self.img1 = pygame.transform.scale(self.img1, self.scaleImageSize)
         self.img2 = pygame.transform.scale(self.img2, self.scaleImageSize)
         self.img3 = pygame.transform.scale(self.img3, self.scaleImageSize)

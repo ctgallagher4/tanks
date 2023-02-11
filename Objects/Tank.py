@@ -23,7 +23,7 @@ class Tank(pygame.sprite.Sprite):
         self.game = game
         self.rotating = False
         self.blitRect = pygame.Rect(self.x, self.y, WIDTH, HEIGHT)
-        self.radarRadius = 500
+        self.radarRadius = .2193 * WIDTH
         self.countTilNextMove = 0
         self.origin = None
         self.radDir = 0
@@ -35,7 +35,8 @@ class Tank(pygame.sprite.Sprite):
             self.lightImage = pygame.image.load("assets/image4.png").convert_alpha()
             sizeX = self.lightImage.get_size()[0]
             sizeY = self.lightImage.get_size()[1]
-            self.scaleLightImageSize = [sizeX * .60, sizeY * 2.5]
+            self.scaleLightImageSize = [.2421 * WIDTH * .60, HEIGHT * .32 * 2.5]
+            print(sizeX, sizeY)
             self.lightImage = pygame.transform.scale(self.lightImage, self.scaleLightImageSize)
             self.lightImage = pygame.transform.rotate(self.lightImage, 180)
             self.filt = pygame.surface.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
@@ -108,9 +109,9 @@ class Tank(pygame.sprite.Sprite):
 
         if self.lightOn:
             img_copy = pygame.transform.rotate(self.lightImage, self.dir)
-            x = self.x - 600*np.sin((self.dir)/360*2*np.pi) - \
+            x = self.x - .2675*WIDTH*np.sin((self.dir)/360*2*np.pi) - \
                 img_copy.get_width() / 2 
-            y = self.y - 600*np.cos((self.dir)/360*2*np.pi) - \
+            y = self.y - .2675*WIDTH*np.cos((self.dir)/360*2*np.pi) - \
                 img_copy.get_height() / 2 
                 
             self.filt.fill(BLACK)

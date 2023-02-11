@@ -7,7 +7,7 @@ class Target(pygame.sprite.Sprite):
 
     def __init__(self, surface):
         pygame.sprite.Sprite.__init__(self)
-        self.radius = 100
+        self.radius = .0439 * WIDTH
         self.setLoc()
         self.surface = surface
         self.origin = None
